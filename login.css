@@ -1,0 +1,131 @@
+/* Background full screen */
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('ABOUT/PHOTO\ LAMALIF.PNG') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/* Form container with some transparency */
+.login-container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 400px 70px;
+    border-radius: 10px;
+    width: 400px;
+    /* kbera chwiya */
+    box-sizing: border-box;
+    text-align: center;
+    margin: 100px 800px 0 auto;
+}
+
+.login-container::before {
+    content: "";
+    display: block;
+    width: 130px;
+    height: 60px;
+    background-image: url("PHOTO\ LAMALIF/LOGO.png");
+    background-size: cover;
+    background-position: center;
+
+    margin: 0 auto 15px auto;
+}
+
+
+.login-container h2 {
+    margin-bottom: 30px;
+    font-weight: normal;
+    font-size: 32px;
+    letter-spacing: 1.5px;
+}
+
+
+
+/* Input fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 12px 0 25px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Small buttons */
+button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #5a6a7a;
+    /* Couleur bleu */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #364245;
+}
+
+/* Container for buttons side by side */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style général du groupe de boutons */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Si <a> utilisé seul comme bouton */
+a.btn-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #5a6a7a;
+    /* Couleur bleu */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+/* Hover */
+a.btn-link:hover {
+    background-color: #364245;
+}
+
+/* Si tu utilises un <button> avec class="btn-link" */
+button.btn-link {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover pour le bouton */
+button.btn-link:hover {
+    background-color: #0056b3;
+}

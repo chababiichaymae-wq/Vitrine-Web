@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>À propos de nous</title>
+    <link rel="stylesheet" href="about.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">LAMALIF</div>
+        <ul>
+            <li><a href="PROFIL.html">PROFIL</a></li>
+            <li><a href="login.html">LOGIN</a></li>
+            <li><a href="sign up.html">SIGN UP</a></li>
+            <li><a href="acceuil.html">ACCUEIL</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="ECLAIRAGE.html">ECLAIRAGE</a></li>
+
+        </ul>
+    </nav>
+
+
+    <!-- SECTION 1: Vidéo d’introduction -->
+    <section class="video-section">
+        <video autoplay muted loop class="bg-video">
+            <source src="Vidéos/dron luminaire HD.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="video-overlay">
+            <h1>À propos de Lamalif Group</h1>
+
+            <p>Depuis plus de 20 ans, nous réinventons l’espace urbain au Maroc.</p>
+        </div>
+    </section>
+
+
+
+
+    <!-- SECTION 2: Mission/Vision -->
+    <div class="slider-container">
+
+        <!-- SLIDES -->
+        <div class="main-slide">
+            <div class="slide active">
+                <div class="left">
+                    <img src="ABOUT/Screenshot 2025-06-16 005818.jpg" alt="img1">
+                </div>
+                <div class="right"></div>
+            </div>
+
+            <div class="slide">
+                <div class="left">
+                    <img src="ABOUT/Screenshot 2025-06-16 005841.jpg" alt="img2">
+                </div>
+                <div class="right"></div>
+            </div>
+
+            <div class="slide">
+                <div class="left">
+                    <img src="ABOUT/Screenshot 2025-06-16 010614.jpg" alt="img3">
+                </div>
+                <div class="right"></div>
+            </div>
+
+            <div class="slide">
+                <div class="left">
+                    <img src="ABOUT/Screenshot 2025-06-16 010655.jpg" alt="img4">
+                </div>
+                <div class="right"></div>
+            </div>
+        </div>
+
+        <!-- ✅ BOUTON EN BAS -->
+        <a href="ECLAIRAGE.html" class="fixed-slider-button">EN SAVOIR PLUS</a>
+    </div>
+
+    <section class="section-groupes">
+        <h2>Nos Groupes</h2>
+
+        <div class="groupe">
+            <img src="PHOTO LAMALIF/LMALIF PHOTO LOGO.jpg" alt="LAMALIF GROUPE">
+            <div class="groupe-content">
+                <h3>LAMALIF GROUPE</h3>
+                <p>Le cœur du groupe : il supervise la stratégie, la gouvernance et l'ensemble des filiales de Lamalif.
+                </p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/EMMO.jpg" alt="LAMALIF IMMOBILIER">
+            <div class="groupe-content">
+                <h3>LAMALIF IMMOBILIER</h3>
+                <p>Développe des projets immobiliers : logements, bureaux, zones d’activités et aménagements urbains.
+                </p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/MATIC.jpg" alt="LAMALIF MATIC">
+            <div class="groupe-content">
+                <h3>LAMALIF MATECH</h3>
+                <p>Spécialisée dans la fabrication de mobilier urbain, mats, candélabres et structures métalliques.</p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/MAADIN.webp" alt="LAMALIF MAÂDIN">
+            <div class="groupe-content">
+                <h3>LAMALIF MAÂDIN / ÉCLAIRAGE</h3>
+                <p>Éclairage public et décoratif : lanternes, luminaires, candélabres pour villes et territoires.</p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/SMART CITY.webp" alt="LAMALIF SMART CITY">
+            <div class="groupe-content">
+                <h3>LAMALIF SMART CITY</h3>
+                <p>Développe des solutions intelligentes pour villes connectées : bornes solaires, mobilier urbain
+                    connecté.</p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/SERVICY.jpg" alt="LAMALIF SERVICES">
+            <div class="groupe-content">
+                <h3>LAMALIF SERVICES</h3>
+                <p>Gère la maintenance, l’entretien et les services urbains liés aux équipements installés par le
+                    groupe.</p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/EVENT.jpeg" alt="LAMALIF EVENTS">
+            <div class="groupe-content">
+                <h3>LAMALIF EVENTS</h3>
+                <p>Spécialiste des événements urbains : décorations lumineuses pour fêtes et grandes célébrations.</p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/ENGINNNER.png" alt="LAMALIF ENGINEERING">
+            <div class="groupe-content">
+                <h3>LAMALIF ENGINEERING</h3>
+                <p>Bureau d’études du groupe : conçoit les projets techniques, urbains et architecturaux.</p>
+            </div>
+        </div>
+
+        <div class="groupe">
+            <img src="Vidéos/DEVLOP.jpg" alt="LAMALIF DÉVELOPPEMENT">
+            <div class="groupe-content">
+                <h3>LAMALIF DÉVELOPPEMENT</h3>
+                <p>Pilote la croissance et l’innovation : nouveaux marchés, projets stratégiques et expansion.</p>
+            </div>
+        </div>
+
+
+
+
+        <script src="carousel.js"></script>
+        <script>
+            const slides = document.querySelectorAll('.slide');
+            const thumbs = document.querySelectorAll('.thumbnails img');
+            let currentIndex = 0;
+            let interval;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                thumbs.forEach((thumb, i) => {
+                    thumb.classList.toggle('selected', i === index);
+                });
+                currentIndex = index;
+            }
+
+            function startAutoSlide() {
+                interval = setInterval(() => {
+                    const next = (currentIndex + 1) % slides.length;
+                    showSlide(next);
+                }, 4000);
+            }
+
+            function resetAutoSlide() {
+                clearInterval(interval);
+                startAutoSlide();
+            }
+
+            startAutoSlide();
+
+            thumbs.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    const index = parseInt(thumb.getAttribute('data-index'));
+                    showSlide(index);
+                    resetAutoSlide();
+                });
+            });
+        </script>
+        <!-- ====== FOOTER ====== -->
+        <footer>
+            <div>
+                <div>
+                    <img src="PHOTO LAMALIF/LOGO.png" alt="Logo Lamalif">
+                    <p>Depuis plus de 20 ans, Lamalif Group contribue à l’esthétique des villes et des territoires au
+                        Maroc.
+                    </p>
+                    <p>📍 Km 17, Route de Casablanca</p>
+                    <p>📞 <a href="tel:+212524344669">+212 5 24 34 46 69</a></p>
+                    <p>📞 <a href="tel:+212712428844">+212 7 12 42 88 44</a></p>
+                    <p>✉️ <a href="mailto:chaymaechababi3@gmail.com">chaymaechababi3@gmail.com</a></p>
+                    <p>✉️ <a href="mailto:contact@lamalif.ma">contact@lamalif.ma</a></p>
+                </div>
+
+                <div>
+                    <h3>Le Groupe</h3>
+                    <hr>
+                    <ul>
+                        <li><a href="mot-president.html">Mot du président</a></li>
+                        <li><a href="groupe-bref.html">Lamalif Group en bref</a></li>
+                        <li><a href="chiffres-cles.html">Nos chiffres clés</a></li>
+                        <li><a href="vision-mission.html">Vision & mission</a></li>
+                        <li><a href="valeurs.html">Nos valeurs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Nos filiales</h3>
+                    <hr>
+                    <ul>
+                        <li><a href="lamalif.html">Lamalif</a></li>
+                        <li><a href="immobilier.html">Lamalif Immobilier</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Abonnez-vous à notre Newsletter</h3>
+                    <hr>
+                    <form action="newsletter.php" method="post">
+                        <label for="email">Email<span style="color:red;">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <button type="submit">Souscrire</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+
+
+
+</body>
+
+</html>

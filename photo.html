@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Description Photo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 50px;
+            margin-bottom: 40px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 6px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="content"></div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        const data = {
+            neptune: {
+                img: "Vidéos/NIU.jpg",
+                desc: `
+                    <p><strong>Type :</strong> Luminaire LED décoratif urbain</p>
+                    <p><strong>Utilisation :</strong> Éclairage de rues piétonnes, parcs, places publiques, zones résidentielles</p>
+                    <p><strong>Design :</strong> Moderne, élégant et discret</p>
+                    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+                    <p><strong>Technologie LED :</strong> Haute efficacité lumineuse</p>
+                    <p><strong>Consommation énergétique :</strong> Très faible (économie d’énergie jusqu’à 70%)</p>
+                    <p><strong>Éclairage :</strong> Doux, homogène, sans éblouissement</p>
+                    <p><strong>Matériau du corps :</strong> Aluminium injecté haute résistance</p>
+                    <p><strong>Finition :</strong> Thermolaquée avec protection anticorrosion</p>
+                    <p><strong>Indice de protection :</strong> IP66 (étanchéité complète à la poussière et à l’eau)</p>
+                    <p><strong>Indice de résistance aux chocs :</strong> IK09 (résistance aux actes de vandalisme)</p>
+                    <p><strong>Durée de vie :</strong> Plus de 100.000 heures</p>
+                    <p><strong>Gestion intelligente :</strong> Compatible télégestion (capteurs et contrôle à distance)</p>
+                    <p><strong>Normes :</strong> Conforme aux normes CE, RoHS, ENEC</p>
+                    <p><strong>Écologie :</strong> Sans mercure, 100 % recyclable</p>
+                    <p><strong>Montage :</strong> Sur mât ou en applique murale</p>
+                    <p><strong>Options :</strong> Variation de puissance, détecteurs de présence</p>
+                    <p><strong>Couleurs disponibles :</strong> Gris urbain, noir mat, ou personnalisée (RAL sur demande)</p>
+                `
+            },
+            carina: {
+                img: "Vidéos/CARINA.jpg",
+                desc: `
+        <p><strong>Type :</strong> Luminaire LED décoratif urbain</p>
+        <p><strong>Utilisation :</strong> Espaces publics, places, promenades, zones piétonnes</p>
+        <p><strong>Design :</strong> Contemporain, épuré et élégant</p>
+        <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+        <p><strong>Technologie LED :</strong> Éclairage homogène avec excellente répartition</p>
+        <p><strong>Consommation énergétique :</strong> Faible consommation, solution écoénergétique</p>
+        <p><strong>Éclairage :</strong> Doux, non éblouissant, agréable pour les piétons</p>
+        <p><strong>Matériau du corps :</strong> Fonte d’aluminium moulée</p>
+        <p><strong>Finition :</strong> Peinture polyester résistante aux UV</p>
+        <p><strong>Indice de protection :</strong> IP65 (protégé contre la poussière et les jets d'eau)</p>
+        <p><strong>Indice de résistance aux chocs :</strong> IK08 (bonne résistance aux chocs mécaniques)</p>
+        <p><strong>Durée de vie :</strong> 80.000 à 100.000 heures</p>
+        <p><strong>Gestion intelligente :</strong> Compatible avec systèmes de variation et détection</p>
+        <p><strong>Normes :</strong> Conforme CE, RoHS, ENEC</p>
+        <p><strong>Écologie :</strong> Sans substances toxiques, recyclable</p>
+        <p><strong>Montage :</strong> Fixation en haut de mât ou sur bras latéral</p>
+        <p><strong>Options :</strong> Diffuseurs opaques ou transparents, réglage d’intensité</p>
+        <p><strong>Couleurs disponibles :</strong> Noir sablé, gris métallisé, autres teintes sur demande</p>
+    `
+            },
+            alba: {
+                img: "Vidéos/ALBA.jpg",
+                desc: `
+        <p><strong>Type :</strong> Luminaire LED compact pour zones extérieures</p>
+        <p><strong>Utilisation :</strong> Parkings, allées piétonnes, zones résidentielles, lotissements</p>
+        <p><strong>Design :</strong> Discret, fonctionnel et robuste</p>
+        <p><strong>Températures de couleur disponibles :</strong> 3000K, 4000K</p>
+        <p><strong>Technologie LED :</strong> Haute efficacité avec faible consommation</p>
+        <p><strong>Consommation énergétique :</strong> Optimisée pour des installations économiques</p>
+        <p><strong>Éclairage :</strong> Uniforme, sans scintillement, sécurisé pour les déplacements nocturnes</p>
+        <p><strong>Matériau du corps :</strong> Aluminium moulé sous pression</p>
+        <p><strong>Finition :</strong> Revêtement anti-corrosion et résistant aux intempéries</p>
+        <p><strong>Indice de protection :</strong> IP66 (protection maximale contre l’eau et la poussière)</p>
+        <p><strong>Indice de résistance aux chocs :</strong> IK08 (résistant aux chocs accidentels)</p>
+        <p><strong>Durée de vie :</strong> Jusqu’à 100.000 heures</p>
+        <p><strong>Gestion intelligente :</strong> Prise en charge des capteurs de mouvement ou de luminosité</p>
+        <p><strong>Normes :</strong> Conforme CE, RoHS, ENEC</p>
+        <p><strong>Écologie :</strong> Sans mercure, recyclable à 95%</p>
+        <p><strong>Montage :</strong> En applique murale ou sur mât bas</p>
+        <p><strong>Options :</strong> Dimmable, différents angles de faisceau disponibles</p>
+        <p><strong>Couleurs disponibles :</strong> Gris clair, noir texturé, autres teintes personnalisables</p>
+    `
+            },
+            fornax: {
+                img: "Vidéos/FORNAX.jpg",
+                desc: `
+        <p><strong>Type :</strong> Projecteur LED haute puissance</p>
+        <p><strong>Utilisation :</strong> Grands boulevards, autoroutes, infrastructures industrielles</p>
+        <p><strong>Design :</strong> Robuste, compact et technique</p>
+        <p><strong>Températures de couleur disponibles :</strong> 4000K, 5000K</p>
+        <p><strong>Technologie LED :</strong> Optique avancée pour une répartition précise de la lumière</p>
+        <p><strong>Consommation énergétique :</strong> Puissance optimisée pour un éclairage puissant avec faible consommation</p>
+        <p><strong>Éclairage :</strong> Intensité élevée, homogène, avec contrôle anti-éblouissement</p>
+        <p><strong>Matériau du corps :</strong> Aluminium moulé sous pression avec dissipateur thermique intégré</p>
+        <p><strong>Finition :</strong> Traitement anticorrosion et peinture résistante aux UV</p>
+        <p><strong>Indice de protection :</strong> IP66 (étanche à la poussière et aux jets d’eau puissants)</p>
+        <p><strong>Indice de résistance aux chocs :</strong> IK09 (excellente résistance aux impacts)</p>
+        <p><strong>Durée de vie :</strong> Supérieure à 100.000 heures</p>
+        <p><strong>Gestion intelligente :</strong> Compatible avec systèmes de télégestion et variateurs</p>
+        <p><strong>Normes :</strong> Conforme CE, RoHS, ENEC</p>
+        <p><strong>Écologie :</strong> Sans mercure, recyclable</p>
+        <p><strong>Montage :</strong> Fixation sur mât, console ou structure métallique</p>
+        <p><strong>Options :</strong> Différents angles de faisceau, capteurs de présence et de luminosité</p>
+        <p><strong>Couleurs disponibles :</strong> Gris foncé, noir mat, personnalisable sur demande</p>
+    `
+            },
+            neptune: {
+                img: "Vidéos/NEPTUNE.jpg",
+                desc: `
+        <p><strong>Type :</strong> Luminaire LED décoratif urbain</p>
+        <p><strong>Utilisation :</strong> Éclairage de rues piétonnes, parcs, places publiques, zones résidentielles</p>
+        <p><strong>Design :</strong> Moderne, élégant et discret</p>
+        <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+        <p><strong>Technologie LED :</strong> Haute efficacité lumineuse</p>
+        <p><strong>Consommation énergétique :</strong> Très faible (économie d’énergie jusqu’à 70%)</p>
+        <p><strong>Éclairage :</strong> Doux, homogène, sans éblouissement</p>
+        <p><strong>Matériau du corps :</strong> Aluminium injecté haute résistance</p>
+        <p><strong>Finition :</strong> Thermolaquée avec protection anticorrosion</p>
+        <p><strong>Indice de protection :</strong> IP66 (étanchéité complète à la poussière et à l’eau)</p>
+        <p><strong>Indice de résistance aux chocs :</strong> IK09 (résistance aux actes de vandalisme)</p>
+        <p><strong>Durée de vie :</strong> Plus de 100.000 heures</p>
+        <p><strong>Gestion intelligente :</strong> Compatible télégestion (capteurs et contrôle à distance)</p>
+        <p><strong>Normes :</strong> Conforme aux normes CE, RoHS, ENEC</p>
+        <p><strong>Écologie :</strong> Sans mercure, 100 % recyclable</p>
+        <p><strong>Montage :</strong> Sur mât ou en applique murale</p>
+        <p><strong>Options :</strong> Variation de puissance, détecteurs de présence</p>
+        <p><strong>Couleurs disponibles :</strong> Gris urbain, noir mat, ou personnalisée (RAL sur demande)</p>
+    `
+            },
+            alya: {
+                img: "PHOTO ECLAIRAGE/ALYA.jpg",
+                desc: `
+       <p><strong>Type :</strong> Luminaire LED décoratif urbain</p>
+<p><strong>Utilisation :</strong> Voiries urbaines, zones résidentielles, parcs, allées piétonnes</p>
+<p><strong>Design :</strong> Élancé, moderne avec une touche architecturale</p>
+<p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+<p><strong>Technologie LED :</strong> Haute performance avec distribution lumineuse optimisée</p>
+<p><strong>Consommation énergétique :</strong> Très basse consommation (jusqu'à 75 % d’économie d’énergie)</p>
+<p><strong>Éclairage :</strong> Confort visuel élevé, sans éblouissement</p>
+<p><strong>Matériau du corps :</strong> Aluminium injecté, traitement anticorrosion</p>
+<p><strong>Finition :</strong> Thermolaquage résistant aux UV et aux intempéries</p>
+<p><strong>Indice de protection :</strong> IP66 (étanche à l’eau et à la poussière)</p>
+<p><strong>Indice de résistance aux chocs :</strong> IK09 (très résistant aux chocs et au vandalisme)</p>
+<p><strong>Durée de vie :</strong> Plus de 100.000 heures</p>
+<p><strong>Gestion intelligente :</strong> Pré-équipé pour télégestion (capteurs de présence, variation automatique)</p>
+<p><strong>Normes :</strong> Conforme CE, RoHS, ENEC</p>
+<p><strong>Écologie :</strong> Sans mercure, recyclable à 95 %</p>
+<p><strong>Montage :</strong> En sommet de mât ou latéral</p>
+<p><strong>Options :</strong> Variation de puissance, systèmes de détection, température réglable</p>
+<p><strong>Couleurs disponibles :</strong> Gris graphite, noir profond, ou toute teinte RAL sur demande</p>
+
+    `
+            },
+            aries: {
+                img: "PHOTO ECLAIRAGE/ARIES.jpg",
+                desc: `
+     <p><strong>Type :</strong> Luminaire LED décoratif urbain</p>
+<p><strong>Utilisation :</strong> Éclairage de rues, parcs, promenades, zones piétonnes</p>
+<p><strong>Design :</strong> Compact, moderne avec lignes épurées</p>
+<p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+<p><strong>Technologie LED :</strong> Efficacité lumineuse élevée avec uniformité d’éclairage</p>
+<p><strong>Consommation énergétique :</strong> Réduction de consommation jusqu’à 70%</p>
+<p><strong>Éclairage :</strong> Doux, homogène, réduit l’éblouissement</p>
+<p><strong>Matériau du corps :</strong> Aluminium moulé sous pression</p>
+<p><strong>Finition :</strong> Thermolaquage anticorrosion, résistant aux UV</p>
+<p><strong>Indice de protection :</strong> IP66 (étanche à la poussière et à l’eau)</p>
+<p><strong>Indice de résistance aux chocs :</strong> IK08 (bonne résistance mécanique)</p>
+<p><strong>Durée de vie :</strong> 100.000 heures</p>
+<p><strong>Gestion intelligente :</strong> Télégestion et capteurs intégrables</p>
+<p><strong>Normes :</strong> CE, RoHS, ENEC</p>
+<p><strong>Écologie :</strong> Sans substances nocives, recyclable</p>
+<p><strong>Montage :</strong> Sur mât ou bras latéral</p>
+<p><strong>Options :</strong> Variation de flux, détection de mouvement</p>
+<p><strong>Couleurs disponibles :</strong> Noir, gris clair, ou toute teinte RAL sur demande</p>
+
+            
+    `
+            },
+            castor: {
+                img: "PHOTO ECLAIRAGE/CASTOR.jpg",
+                desc: `
+     <p><strong>Type :</strong> Luminaire LED décoratif urbain</p>
+<p><strong>Utilisation :</strong> Zones piétonnes, places publiques, parkings, voies résidentielles</p>
+<p><strong>Design :</strong> Robuste et sobre avec finitions contemporaines</p>
+<p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+<p><strong>Technologie LED :</strong> Répartition lumineuse optimisée, haute efficacité</p>
+<p><strong>Consommation énergétique :</strong> Très faible, optimisation énergétique garantie</p>
+<p><strong>Éclairage :</strong> Uniforme, non éblouissant, agréable</p>
+<p><strong>Matériau du corps :</strong> Fonte d’aluminium haute qualité</p>
+<p><strong>Finition :</strong> Revêtement polyester anti-UV</p>
+<p><strong>Indice de protection :</strong> IP65 (résistant aux intempéries)</p>
+<p><strong>Indice de résistance aux chocs :</strong> IK09 (résistant au vandalisme)</p>
+<p><strong>Durée de vie :</strong> Jusqu’à 100.000 heures</p>
+<p><strong>Gestion intelligente :</strong> Compatible avec systèmes de télégestion</p>
+<p><strong>Normes :</strong> CE, RoHS, ENEC</p>
+<p><strong>Écologie :</strong> Respectueux de l’environnement, recyclable</p>
+<p><strong>Montage :</strong> En tête de mât ou fixation murale</p>
+<p><strong>Options :</strong> Variation, capteur de présence, teintes personnalisées</p>
+<p><strong>Couleurs disponibles :</strong> Gris urbain, noir mat, RAL personnalisé</p>
+
+    `
+            },
+            celia: {
+                img: "PHOTO ECLAIRAGE/CELIA.jpg",
+                desc: `
+     <p><strong>Type :</strong> Luminaire LED décoratif urbain</p>
+<p><strong>Utilisation :</strong> Allées, jardins, esplanades, zones résidentielles</p>
+<p><strong>Design :</strong> Élégant, raffiné, design cylindrique ou courbé</p>
+<p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+<p><strong>Technologie LED :</strong> Éclairage homogène à faible consommation</p>
+<p><strong>Consommation énergétique :</strong> Faible consommation (jusqu’à 65 % d’économie)</p>
+<p><strong>Éclairage :</strong> Agréable, doux, adapté aux zones piétonnes</p>
+<p><strong>Matériau du corps :</strong> Aluminium injecté haute résistance</p>
+<p><strong>Finition :</strong> Peinture polyester texturée, anti-corrosion</p>
+<p><strong>Indice de protection :</strong> IP66 (étanchéité complète)</p>
+<p><strong>Indice de résistance aux chocs :</strong> IK08 (bonne résistance aux chocs)</p>
+<p><strong>Durée de vie :</strong> Supérieure à 90.000 heures</p>
+<p><strong>Gestion intelligente :</strong> Détection automatique et variation de flux</p>
+<p><strong>Normes :</strong> CE, RoHS, ENEC</p>
+<p><strong>Écologie :</strong> Sans mercure, recyclable</p>
+<p><strong>Montage :</strong> Sur mât, applique ou borne basse</p>
+<p><strong>Options :</strong> Lentilles spéciales, capteurs, couleur personnalisée</p>
+<p><strong>Couleurs disponibles :</strong> Noir profond, gris galet, autres RAL sur demande</p>
+
+    `
+            },
+            fortaleza: {
+                img: "PHOTO ECLAIRAGE/FORTALEZA.jpg",
+                desc:
+                    `
+    
+    <p><strong>Type :</strong> Luminaire LED architectural extérieur</p>
+    <p><strong>Utilisation :</strong> Éclairage de monuments, façades, et structures urbaines</p>
+    <p><strong>Design :</strong> Robuste, compact, discret pour intégration dans l’environnement</p>
+    <p><strong>Températures de couleur disponibles :</strong> 3000K, 4000K, 5000K</p>
+    <p><strong>Technologie LED :</strong> Haute intensité avec optiques spécifiques</p>
+    <p><strong>Consommation énergétique :</strong> Optimisée pour un rendement maximal</p>
+    <p><strong>Éclairage :</strong> Précis, directionnel, sans dispersion</p>
+    <p><strong>Matériau du corps :</strong> Aluminium moulé haute performance</p>
+    <p><strong>Finition :</strong> Thermolaquée anti-corrosion</p>
+    <p><strong>Indice de protection :</strong> IP67 (immersion temporaire possible)</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK08</p>
+    <p><strong>Durée de vie :</strong> Jusqu’à 100.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Compatible DMX / DALI</p>
+    <p><strong>Normes :</strong> CE, RoHS</p>
+    <p><strong>Écologie :</strong> 100 % recyclable, sans mercure</p>
+    <p><strong>Montage :</strong> Encastré, mural ou sur support</p>
+    <p><strong>Options :</strong> RGBW, lentilles interchangeables</p>
+    <p><strong>Couleurs disponibles :</strong> Noir mat, gris foncé</p>
+
+
+    `
+            },
+            imperial: {
+                img: "PHOTO ECLAIRAGE/IMPERIAL.jpg",
+                desc: `
+     
+    <p><strong>Type :</strong> Luminaire LED décoratif haut de gamme</p>
+    <p><strong>Utilisation :</strong> Allées prestigieuses, zones historiques, hôtels et monuments</p>
+    <p><strong>Design :</strong> Classique revisité, noble et raffiné</p>
+    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+    <p><strong>Technologie LED :</strong> LED haute efficacité à diffusion contrôlée</p>
+    <p><strong>Consommation énergétique :</strong> Réduction jusqu’à 70 % par rapport aux lampes traditionnelles</p>
+    <p><strong>Éclairage :</strong> Uniforme, chaleureux, sans scintillement</p>
+    <p><strong>Matériau du corps :</strong> Aluminium moulé avec détails décoratifs</p>
+    <p><strong>Finition :</strong> Thermolaquage anti-UV et anti-humidité</p>
+    <p><strong>Indice de protection :</strong> IP66</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK09</p>
+    <p><strong>Durée de vie :</strong> Plus de 100.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Prédisposé pour télégestion et capteurs</p>
+    <p><strong>Normes :</strong> CE, RoHS, ENEC</p>
+    <p><strong>Écologie :</strong> Sans plomb, sans mercure, recyclable</p>
+    <p><strong>Montage :</strong> Sur mât décoratif ou bras mural</p>
+    <p><strong>Options :</strong> Variation automatique de l’intensité, détecteurs de mouvement</p>
+    <p><strong>Couleurs disponibles :</strong> Noir antique, bronze, autres couleurs RAL sur demande</p>
+
+
+    `
+            },
+            luna: {
+                img: "PHOTO ECLAIRAGE/LUNA.jpg",
+                desc: `
+     
+    <p><strong>Type :</strong> Luminaire LED moderne et polyvalent</p>
+    <p><strong>Utilisation :</strong> Parcs, espaces verts, quartiers résidentiels, pistes cyclables</p>
+    <p><strong>Design :</strong> Minimaliste, circulaire, avec diffuseur doux</p>
+    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+    <p><strong>Technologie LED :</strong> LED de dernière génération à haut rendement</p>
+    <p><strong>Consommation énergétique :</strong> Très faible, excellent rapport lumens/watt</p>
+    <p><strong>Éclairage :</strong> Diffus, agréable, sans ombre marquée</p>
+    <p><strong>Matériau du corps :</strong> Aluminium extrudé et diffuseur polycarbonate</p>
+    <p><strong>Finition :</strong> Revêtement poudre polyester anti-UV</p>
+    <p><strong>Indice de protection :</strong> IP65</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK08</p>
+    <p><strong>Durée de vie :</strong> 80.000 à 100.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Compatible avec systèmes de variation et détection de présence</p>
+    <p><strong>Normes :</strong> CE, RoHS</p>
+    <p><strong>Écologie :</strong> 100 % recyclable, sans substances dangereuses</p>
+    <p><strong>Montage :</strong> Sur mât ou en applique selon configuration</p>
+    <p><strong>Options :</strong> Teinte de diffuseur, détection crépusculaire</p>
+    <p><strong>Couleurs disponibles :</strong> Blanc pur, gris clair, autres RAL disponibles</p>
+
+
+    `
+            },
+            navi: {
+                img: "PHOTO ECLAIRAGE/NAVI.jpg",
+                desc: `
+     
+    <p><strong>Type :</strong> Luminaire LED compact pour voies urbaines</p>
+    <p><strong>Utilisation :</strong> Rues secondaires, parkings, zones résidentielles</p>
+    <p><strong>Design :</strong> Discret, fonctionnel et épuré</p>
+    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+    <p><strong>Technologie LED :</strong> Modules LED à haute efficacité</p>
+    <p><strong>Consommation énergétique :</strong> Optimisée pour basse consommation</p>
+    <p><strong>Éclairage :</strong> Uniforme, sans éblouissement</p>
+    <p><strong>Matériau du corps :</strong> Aluminium injecté léger et résistant</p>
+    <p><strong>Finition :</strong> Thermolaquée avec traitement anticorrosion</p>
+    <p><strong>Indice de protection :</strong> IP66</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK08</p>
+    <p><strong>Durée de vie :</strong> Jusqu’à 100.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Prêt pour systèmes de télégestion</p>
+    <p><strong>Normes :</strong> Conforme CE, RoHS</p>
+    <p><strong>Écologie :</strong> Sans plomb, recyclable à 100%</p>
+    <p><strong>Montage :</strong> En top de mât ou sur potence</p>
+    <p><strong>Options :</strong> Détecteurs de mouvement, variation automatique</p>
+    <p><strong>Couleurs disponibles :</strong> Gris clair, noir urbain, autres sur demande</p>
+
+
+    `
+            },
+            palace: {
+                img: "PHOTO ECLAIRAGE/PALACE.jpg",
+                desc: `
+    <p><strong>Type :</strong> Luminaire LED décoratif style classique</p>
+    <p><strong>Utilisation :</strong> Places historiques, centres anciens, façades patrimoniales</p>
+    <p><strong>Design :</strong> Ornementé, style lanternes anciennes</p>
+    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K</p>
+    <p><strong>Technologie LED :</strong> LED haute efficacité avec diffuseur classique</p>
+    <p><strong>Consommation énergétique :</strong> Réduction significative de la consommation</p>
+    <p><strong>Éclairage :</strong> Chaleureux, doux et accueillant</p>
+    <p><strong>Matériau du corps :</strong> Fonte d’aluminium décorative</p>
+    <p><strong>Finition :</strong> Thermolaquage avec traitement antique</p>
+    <p><strong>Indice de protection :</strong> IP65</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK08</p>
+    <p><strong>Durée de vie :</strong> 80.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Détection crépusculaire possible</p>
+    <p><strong>Normes :</strong> CE, RoHS</p>
+    <p><strong>Écologie :</strong> Conçu sans substances toxiques</p>
+    <p><strong>Montage :</strong> Sur bras mural ou colonne classique</p>
+    <p><strong>Options :</strong> Diffuseur transparent ou sablé</p>
+    <p><strong>Couleurs disponibles :</strong> Noir forgé, bronze, couleurs patrimoniales</p>
+`
+
+            },
+            paris: {
+                img: "PHOTO ECLAIRAGE/PARIS.jpg",
+                desc: `
+    <p><strong>Type :</strong> Luminaire LED rétro pour centres urbains</p>
+    <p><strong>Utilisation :</strong> Avenues, parcs, zones piétonnes</p>
+    <p><strong>Design :</strong> Élégant, inspiré des lampadaires haussmanniens</p>
+    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+    <p><strong>Technologie LED :</strong> LED performantes avec optiques internes</p>
+    <p><strong>Consommation énergétique :</strong> Faible, excellente efficacité</p>
+    <p><strong>Éclairage :</strong> Confort visuel, ambiance chaleureuse</p>
+    <p><strong>Matériau du corps :</strong> Fonte d’aluminium et dôme transparent</p>
+    <p><strong>Finition :</strong> Revêtement polyester texturé</p>
+    <p><strong>Indice de protection :</strong> IP66</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK09</p>
+    <p><strong>Durée de vie :</strong> Plus de 100.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Télégestion ou capteur de lumière en option</p>
+    <p><strong>Normes :</strong> CE, RoHS, ENEC</p>
+    <p><strong>Écologie :</strong> Sans mercure, recyclable</p>
+    <p><strong>Montage :</strong> Sur fût en fonte ou potence</p>
+    <p><strong>Options :</strong> Teinte du dôme, variation d’intensité</p>
+    <p><strong>Couleurs disponibles :</strong> Noir, gris fonte, autres RAL classiques</p>
+`
+
+
+
+            },
+            royal: {
+                img: "PHOTO ECLAIRAGE/ROYAL.jpg",
+                desc: `
+    <p><strong>Type :</strong> Luminaire LED décoratif luxueux</p>
+    <p><strong>Utilisation :</strong> Espaces VIP, hôtels de luxe, boulevards prestigieux</p>
+    <p><strong>Design :</strong> Raffiné, finitions haut de gamme</p>
+    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+    <p><strong>Technologie LED :</strong> LED puissantes avec optique multicouche</p>
+    <p><strong>Consommation énergétique :</strong> Optimisation énergétique avec gestion intelligente</p>
+    <p><strong>Éclairage :</strong> Haute uniformité, rendu des couleurs optimal</p>
+    <p><strong>Matériau du corps :</strong> Aluminium moulé finition ornementale</p>
+    <p><strong>Finition :</strong> Peinture thermodurcissable, haute résistance</p>
+    <p><strong>Indice de protection :</strong> IP66</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK09</p>
+    <p><strong>Durée de vie :</strong> 100.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Compatible télégestion complète</p>
+    <p><strong>Normes :</strong> CE, RoHS, ENEC</p>
+    <p><strong>Écologie :</strong> Matériaux écologiques et durables</p>
+    <p><strong>Montage :</strong> Sur mât haut ou double bras</p>
+    <p><strong>Options :</strong> Dôme décoratif, variation temporelle</p>
+    <p><strong>Couleurs disponibles :</strong> Noir orné, champagne, bronze doré</p>
+`
+
+
+            },
+            selene: {
+                img: "PHOTO ECLAIRAGE/SELENE.jpg",
+
+                desc: `
+    <p><strong>Type :</strong> Luminaire LED élégant pour zones piétonnes</p>
+    <p><strong>Utilisation :</strong> Promenades, jardins publics, centres commerciaux</p>
+    <p><strong>Design :</strong> Moderne avec lignes fluides</p>
+    <p><strong>Températures de couleur disponibles :</strong> 2700K, 3000K, 4000K</p>
+    <p><strong>Technologie LED :</strong> LED avec optique anti-éblouissement</p>
+    <p><strong>Consommation énergétique :</strong> Faible consommation certifiée</p>
+    <p><strong>Éclairage :</strong> Doux, diffus, parfait pour balades nocturnes</p>
+    <p><strong>Matériau du corps :</strong> Aluminium extrudé</p>
+    <p><strong>Finition :</strong> Peinture époxy résistante</p>
+    <p><strong>Indice de protection :</strong> IP65</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK08</p>
+    <p><strong>Durée de vie :</strong> 90.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Variation automatique disponible</p>
+    <p><strong>Normes :</strong> CE, RoHS</p>
+    <p><strong>Écologie :</strong> 100 % recyclable, sans émissions nocives</p>
+    <p><strong>Montage :</strong> Sur mât simple ou double</p>
+    <p><strong>Options :</strong> Détection de mouvement, ajustement d’intensité</p>
+    <p><strong>Couleurs disponibles :</strong> Blanc perle, noir, gris argent</p>
+`
+
+
+            },
+            vela: {
+                img: "PHOTO ECLAIRAGE/VELA.jpg",
+                desc: `
+    <p><strong>Type :</strong> Luminaire LED contemporain pour l’espace public</p>
+    <p><strong>Utilisation :</strong> Routes urbaines, parkings, zones commerciales</p>
+    <p><strong>Design :</strong> Élancé, sobre, avec profil aérodynamique</p>
+    <p><strong>Températures de couleur disponibles :</strong> 3000K, 4000K</p>
+    <p><strong>Technologie LED :</strong> Modules LED haute performance</p>
+    <p><strong>Consommation énergétique :</strong> Ultra basse consommation</p>
+    <p><strong>Éclairage :</strong> Directionnel, sans zones d’ombre</p>
+    <p><strong>Matériau du corps :</strong> Aluminium avec dissipateur thermique intégré</p>
+    <p><strong>Finition :</strong> Traitement anti-UV et anticorrosion</p>
+    <p><strong>Indice de protection :</strong> IP66</p>
+    <p><strong>Indice de résistance aux chocs :</strong> IK09</p>
+    <p><strong>Durée de vie :</strong> Jusqu’à 100.000 heures</p>
+    <p><strong>Gestion intelligente :</strong> Interface pour contrôle intelligent</p>
+    <p><strong>Normes :</strong> CE, RoHS, ENEC</p>
+    <p><strong>Écologie :</strong> Recyclable, sans substances nocives</p>
+    <p><strong>Montage :</strong> Sur mât droit ou incliné</p>
+    <p><strong>Options :</strong> Détecteur crépusculaire, variation horaire</p>
+    <p><strong>Couleurs disponibles :</strong> Gris foncé, noir mat, autres RAL</p>
+`
+
+
+
+            },
+
+
+
+        };
+
+        const photo = data[id];
+
+        if (photo) {
+            document.getElementById("content").innerHTML = `
+                <img src="${photo.img}" alt="${id}">
+                ${photo.desc}
+            `;
+        } else {
+            document.getElementById("content").innerHTML = "<p>Image non trouvée.</p>";
+        }
+    </script>
+</body>
+
+</html>

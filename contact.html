@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Lamalif Group</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("ABOUT/PHOTO\ LAMALIF.PNG");
+            color: white;
+            margin: 100;
+            padding: 100;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: #000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: #1e1e1e;
+            padding: 70px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #7c8893;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background: #2a2a2a;
+            color: white;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #7c8893;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #545d66;
+        }
+
+        .success {
+            background: #2ecc71;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            color: white;
+            text-align: center;
+        }
+
+        .error {
+            background: #e74c3c;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            color: white;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        footer {
+            background-color: #030303;
+            color: #ccc;
+            padding: 10px 130px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        footer>div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        footer>div>div {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        footer hr {
+            width: 40px;
+            border: 1px solid #fff;
+            margin-left: 0;
+            margin-bottom: 15px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 8px;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #0a66c2;
+        }
+
+        footer img {
+            width: 130px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        footer p {
+            line-height: 1.6;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            footer>div {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            footer>div>div {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">LAMALIF</div>
+        <ul>
+            <li><a href="PROFIL.html">PROFIL</a></li>
+            <li><a href="login.html">LOGIN</a></li>
+            <li><a href="sign up.html">SIGN UP</a></li>
+            <li><a href="acceuil.html">ACCUEIL</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="ECLAIRAGE.html">ECLAIRAGE</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Contactez un département</h2>
+
+        <div id="messageBox" style="display: none;"></div>
+
+        <form action="contact.php" method="POST">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="email">Votre E-mail :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="departement">Département :</label>
+            <select id="departement" name="departement" required>
+                <option value="">-- Choisir un département --</option>
+                <option value="it">IT</option>
+                <option value="facilities">Facilities</option>
+                <option value="comptable">Contrôle de Gestion</option>
+                <option value="chiffrage">Hérage</option>
+                <option value="eclairage">DAF (Direction admin & financière)</option>
+                <option value="marketing">DOP (Direction opérationnelle)</option>
+                <option value="dbd">DBD (Business Development)</option>
+                <option value="dbe">DBE (Business Unitaire)</option>
+                <option value="market">Marketing</option>
+                <option value="supply">Supply Chain</option>
+                <option value="service">Customer Service</option>
+                <option value="production">Production Matériel</option>
+            </select>
+
+            <label for="sujet">Sujet :</label>
+            <select id="sujet" name="sujet" required>
+                <option value="">-- Choisir un sujet --</option>
+                <option value="Demande d'information">Demande d'information</option>
+                <option value="Réclamation">Réclamation</option>
+                <option value="Partenariat">Partenariat</option>
+                <option value="Support technique">Support technique</option>
+                <option value="Support technique">Stage</option>
+                <option value="Autre">Autre</option>
+            </select>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const messageBox = document.getElementById("messageBox");
+
+        if (params.get("success") === "1") {
+            messageBox.className = "success";
+            messageBox.textContent = "✅ Votre message a été envoyé avec succès.";
+            messageBox.style.display = "block";
+        } else if (params.get("success") === "0") {
+            messageBox.className = "error";
+            messageBox.textContent = "❌ Erreur lors de l'envoi du message. Veuillez réessayer.";
+            messageBox.style.display = "block";
+        }
+
+        setTimeout(() => {
+            if (messageBox) messageBox.style.display = "none";
+        }, 5000);
+
+        if (window.history.replaceState) {
+            const url = new URL(window.location);
+            url.searchParams.delete('success');
+            window.history.replaceState(null, '', url.pathname);
+        }
+    </script>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div>
+            <div>
+                <img src="PHOTO LAMALIF/LOGO.png" alt="Logo Lamalif">
+                <p>Depuis plus de 20 ans, Lamalif Group contribue à l’esthétique des villes et des territoires au Maroc.
+                </p>
+                <p>📍 Km 17, Route de Casablanca</p>
+                <p>📞 <a href="tel:+212524344669">+212 5 24 34 46 69</a></p>
+                <p>📞 <a href="tel:+212712428844">+212 7 12 42 88 44</a></p>
+                <p>✉️ <a href="mailto:chaymaechababi3@gmail.com">chaymaechababi3@gmail.com</a></p>
+                <p>✉️ <a href="mailto:contact@lamalif.ma">contact@lamalif.ma</a></p>
+            </div>
+
+            <div>
+                <h3>Le Groupe</h3>
+                <hr>
+                <ul>
+                    <li><a href="mot-president.html">Mot du président</a></li>
+                    <li><a href="groupe-bref.html">Lamalif Group en bref</a></li>
+                    <li><a href="chiffres-cles.html">Nos chiffres clés</a></li>
+                    <li><a href="vision-mission.html">Vision & mission</a></li>
+                    <li><a href="valeurs.html">Nos valeurs</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Nos filiales</h3>
+                <hr>
+                <ul>
+                    <li><a href="lamalif.html">Lamalif</a></li>
+                    <li><a href="immobilier.html">Lamalif Immobilier</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Abonnez-vous à notre Newsletter</h3>
+                <hr>
+                <form action="newsletter.php" method="post">
+                    <label for="email">Email<span style="color:red;">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <button type="submit">Souscrire</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

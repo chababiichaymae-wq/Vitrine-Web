@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamalif Style avec Vidéo</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: rgba(255, 255, 255, 0.3);
+            /* شفاف */
+            backdrop-filter: blur(10px);
+            /* flou زوين ف الخلفية */
+            padding: 15px 30px;
+            display: flex;
+            justify-content: center;
+            /* باش يكون وسط */
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CONTAINER INTERNE POUR CENTRER CONTENU */
+        nav .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            /* limite le contenu au centre */
+        }
+
+        /* LOGO */
+        nav .logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: #000;
+        }
+
+        /* MENU */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+
+        /* Vidéo Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content a {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero-content a:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Section Qui sommes-nous */
+        .about {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .about-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .about-image img {
+            width: 90%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-content a {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        /* EN SAVOIR PLUS */
+        .about-image {
+            display: inline-block;
+            /* Pour que le lien suive la taille de l'image */
+            text-align: center;
+            /* Centrer le lien sous l’image */
+        }
+
+        .about-image img {
+            display: block;
+            /* Supprime espace blanc sous image */
+            max-width: 100%;
+            /* Image responsive */
+            height: auto;
+            border-radius: 10px;
+            /* Coins arrondis */
+        }
+
+        .about-image a {
+            display: inline-block;
+            /* Pour appliquer padding */
+            margin-top: 15px;
+            /* Espace entre image et lien */
+            padding: 12px 30px;
+            /* Taille du bouton */
+            background-color: #030303;
+            /* Fond sombre */
+            color: white;
+            /* Texte blanc */
+            text-decoration: none;
+            /* Supprimer soulignement */
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            /* Curseur pointeur */
+        }
+
+        .about-image a:hover {
+            background-color: #555;
+            /* Couleur hover */
+        }
+
+
+        /* Responsive pour mobile */
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text,
+            .about-image {
+                max-width: 90%;
+                padding: 10px;
+            }
+
+            .about-text p {
+                text-align: left;
+            }
+
+            /* Styliser le lien “EN SAVOIR PLUS” dans about-image */
+
+
+        }
+
+        .thumbnail {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
+        }
+
+        /* UN GROUPE QUI DIVISE  */
+
+        .services-icons {
+            background-color: #d3d3d3;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .services-icons h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .services-icons .underline {
+            width: 80px;
+            height: 2px;
+            background-color: #111;
+            margin: 0 auto 20px auto;
+        }
+
+        .services-icons .subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 40px;
+        }
+
+        .icons-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: nowrap;
+            /* Empêche le retour à la ligne */
+            overflow-x: auto;
+            /* Active le scroll horizontal si nécessaire */
+            padding-bottom: 10px;
+            /* Petit espace sous les icônes */
+        }
+
+        .icon-box {
+            text-align: center;
+            text-decoration: none;
+            /* enlever soulignement */
+            color: inherit;
+            /* garder couleur du texte normale */
+            transition: transform 0.3s;
+
+            .icon-box {
+                min-width: 200px;
+                /* Largeur minimale pour empêcher l'écrasement */
+                flex-shrink: 0;
+                /* Ne pas réduire les icônes quand espace limité */
+            }
+
+        }
+
+        .icon-box:hover {
+            transform: scale(1.05);
+        }
+
+
+        .icon-box img {
+            background-color: #000;
+            border-radius: 15px;
+            padding: 80px;
+            width: 90px;
+            height: 90px;
+        }
+
+        .icon-box p {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #111;
+        }
+
+        /* SECTION ENTIÈRE 3 */
+        .section-presentation {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        /* TITRE */
+        .section-title {
+            font-size: 32px;
+            color: #030303;
+            margin-bottom: 30px;
+        }
+
+        /* IMAGE CENTRÉE */
+        .section-image {
+            display: flex;
+            justify-content: center;
+            /* Centrage horizontal */
+            margin-bottom: 25px;
+        }
+
+        .section-image img {
+            max-width: 80%;
+            /* Taille raisonnable et responsive */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* TEXTE EN DESSOUS */
+        .section-text {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+            /* Centrage du texte */
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">LAMALIF</div>
+        <ul>
+            <li><a href="PROFIL.html">PROFIL</a></li>
+            <li><a href="login.html">LOGIN</a></li>
+            <li><a href="sign up.html">SIGN UP</a></li>
+            <li><a href="acceuil.html">ACCUEIL</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="ECLAIRAGE.html">ECLAIRAGE</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+
+
+        </ul>
+    </nav>
+
+    <!-- Section avec vidéo -->
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="Vidéos/fin d'année 2024-_1.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="hero-content">
+            <h1>De la ville à la vie</h1>
+            <a href="about.html">EN SAVOIR PLUS</a>
+        </div>
+    </section>
+    <!-- SECTION 1  -->
+    <!-- Qui sommes-nous -->
+    <section class="about-section">
+        <!-- Image à gauche ou à droite selon ton choix -->
+        <div class="about-image">
+            <img src="PHOTO LAMALIF/photo.jpg" alt="Image d’aménagement urbain">
+            <a href="about.html">EN SAVOIR PLUS</a>
+        </div>
+
+        <div class="about-text">
+            <h2>À propos de Lamalif Group</h2>
+            <p>
+                Depuis plus de deux décennies, Lamalif Group s’impose comme un acteur majeur dans la transformation de
+                l’espace urbain au Maroc. En redéfinissant les codes de l’éclairage public et de l’aménagement urbain,
+                nous participons activement à la réinvention esthétique et fonctionnelle des villes et des territoires
+                du Royaume.
+            </p>
+            <p>
+                Forts d’une expertise reconnue, nous mettons notre savoir-faire au service des collectivités et des
+                citoyens, en proposant des solutions innovantes, durables et adaptées aux enjeux spécifiques de chaque
+                environnement urbain.
+            </p>
+            <p>
+                Notre passion pour les espaces publics se traduit par un engagement constant en faveur de la qualité, de
+                l’innovation et de l’excellence. Nous plaçons l’expérience urbaine au cœur de notre démarche, en
+                anticipant les besoins futurs des territoires.
+            </p>
+            <p>
+                L’excellence opérationnelle, le goût de l’innovation et l’attachement au patrimoine urbain sont les
+                fondements de notre action, et nous permettent de conforter chaque jour notre position de leader du
+                secteur au Maroc.
+            </p>
+        </div>
+    </section>
+    <!-- SECTION 2 ECLAIRAGE  -->
+
+    <section class="services-icons">
+        <h2>UN GROUPE QUI DIVERSIFIE SES ACTIVITÉS</h2>
+        <div class="underline"></div>
+        <p class="subtitle">
+            Nous mettons notre expertise au service des villes et de leurs citoyens, à travers nos différents
+            métiers…
+        </p>
+
+        <div class="icons-grid">
+            <a href="ECLAIRAGE.html" class="icon-box">
+
+                <img src="PHOTO LAMALIF/ECLAIRAGE.jpg" alt="Éclairage">
+                <p>Éclairage</p>
+            </a>
+        </div>
+        <div class="icon-box">
+            <img src="PHOTO LAMALIF/MOBILIER URBAIN.jpg" alt="Mobilier urbain">
+            <p>Mobilier<br>urbain</p>
+        </div>
+        <div class="icon-box">
+            <img src="images/icon-immo.png" alt="Promotion immobilière">
+            <p>Promotion<br>immobilière</p>
+        </div>
+        </div>
+    </section>
+    <section class="section-presentation">
+
+        <!-- SECTION 3 HISTOIRE  -->
+        <div class="section-image">
+            <img src="Vidéos/HISTOIRE LAMALIF.jpg" alt="Notre mission chez Lamalif">
+        </div>
+
+        <div class="section-text">
+            <p>
+                Depuis sa création, Lamalif Group œuvre pour un aménagement urbain innovant, durable et esthétique.
+                Notre mission est de transformer les espaces publics en véritables lieux de vie, tout en respectant
+                les valeurs environnementales et sociétales.
+            </p>
+        </div>
+        <div class="about-image">
+
+            <a href="about.html">EN SAVOIR PLUS</a>
+        </div>
+    </section>
+
+
+
+
+    <!-- ====== FOOTER ====== -->
+    <footer style="background-color: #030303; color: #ccc; padding: 60px 30px;">
+        <div
+            style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto; gap: 40px;">
+
+            <!-- Logo et infos -->
+            <div style="flex: 1; min-width: 220px;">
+                <img src="PHOTO LAMALIF/LOGO.png" alt="Logo Lamalif" style="width: 130px; margin-bottom: 20px;">
+                <p style="line-height: 1.6;">
+                    Depuis plus de 20 ans, Lamalif Group contribue à l’esthétique des villes et des territoires au
+                    Maroc.
+                </p>
+                <p>📍 Km 17, Route de Casablanca</p>
+                <p>📞 <a href="tel:+212524344669" style="color:#ccc; text-decoration: none;">+212 5 24 34 46 69</a>
+                </p>
+                <p>📞 <a href="tel:+212712428844" style="color:#ccc; text-decoration: none;">+212 7 12 42 88 44</a>
+                </p>
+                <p>✉️ <a href="mailto:chaymaechababi3@gmail.com" style="color:#ccc; text-decoration: none;">
+                        chaymaechababi3@gmail.com
+
+                    </a></p>
+                <p>✉️ <a href="mailto:contact@lamalif.ma" style="color:#ccc; text-decoration: none;"> contact@lamalif.ma
+
+                    </a></p>
+            </div>
+
+            <!-- Le Groupe -->
+            <div style="flex: 1; min-width: 150px;">
+                <h3 style="color: white;">Le Groupe</h3>
+                <hr style="width: 40px; border: 1px solid #fff; margin-left: 0;">
+                <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                    <li><a href="mot-president.html" style="color: #ccc; text-decoration: none;">Mot du
+                            président</a>
+                    </li>
+                    <li><a href="groupe-bref.html" style="color: #ccc; text-decoration: none;">Lamalif Group en
+                            bref</a>
+                    </li>
+                    <li><a href="chiffres-cles.html" style="color: #ccc; text-decoration: none;">Nos chiffres
+                            clés</a>
+                    </li>
+                    <li><a href="vision-mission.html" style="color: #ccc; text-decoration: none;">Vision &
+                            mission</a>
+                    </li>
+                    <li><a href="valeurs.html" style="color: #ccc; text-decoration: none;">Nos valeurs</a></li>
+                </ul>
+            </div>
+
+            <!-- Nos filiales -->
+            <div style="flex: 1; min-width: 150px;">
+                <h3 style="color: white;">Nos filiales</h3>
+                <hr style="width: 40px; border: 1px solid #fff; margin-left: 0;">
+                <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                    <li><a href="lamalif.html" style="color: #ccc; text-decoration: none;">Lamalif</a></li>
+                    <li><a href="immobilier.html" style="color: #ccc; text-decoration: none;">Lamalif Immobilier</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div style="flex: 1; min-width: 250px;">
+                <h3 style="color: white;">Abonnez-vous à notre Newsletter</h3>
+                <hr style="width: 40px; border: 1px solid #fff; margin-left: 0;">
+                <form action="newsletter.php" method="post" style="margin-top: 15px;">
+                    <label for="email" style="display: block; margin-bottom: 5px;">Email<span
+                            style="color:red;">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Email" required
+                        style="padding: 10px; width: 100%; max-width: 300px; border: none; border-radius: 5px; margin-bottom: 10px;">
+                    <br>
+                    <button type="submit"
+                        style="background-color: #333; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
+                        Souscrire
+                    </button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

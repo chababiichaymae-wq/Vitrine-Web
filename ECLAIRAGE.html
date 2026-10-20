@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Slider avec image + texte</title>
+    <link rel="stylesheet" href="ECLAIRAGE.css"> <!-- ربط ملف CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url("ABOUT/PHOTO\ LAMALIF.PNG") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .slider-container {
+            max-width: 90vw;
+            margin: 80px auto 40px;
+            /* نازل شوية */
+            background-color: rgba(255, 255, 255, 0.9);
+            /* شوية خلفية بيضاء للسلايدر */
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .main-slide {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            /* أصغر من نسخة الكبيرة */
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide .left,
+        .slide .right {
+            width: 50%;
+            height: 100%;
+        }
+
+        .slide .left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-right: 2px solid #ddd;
+        }
+
+        .slide .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+            text-align: left;
+            overflow-y: auto;
+            /* permet le scroll si le contenu dépasse */
+            max-height: 100%;
+        }
+
+
+        .slide .right h2 {
+            margin-bottom: 15px;
+            font-size: 26px;
+            color: #007BFF;
+        }
+
+        .slide .right p {
+            font-size: 16px;
+            color: #444;
+        }
+
+        .thumbnails {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .thumbnails img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .thumbnails img:hover,
+        .thumbnails img.selected {
+            border-color: #007BFF;
+            transform: scale(1.05);
+        }
+
+        .scroll-box {
+            max-height: 230px;
+            overflow-y: auto;
+            padding-right: 10px;
+            scroll-behavior: smooth;
+        }
+
+        .scroll-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scroll-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .scroll-box::-webkit-scrollbar-thumb {
+            background-color: #007BFF;
+            border-radius: 10px;
+        }
+
+        .gallery-section {
+            background-color: #bbbaba;
+            /* رمادي خفيف */
+            padding: 40px 0;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">LAMALIF</div>
+        <ul>
+            <li><a href="PROFIL.html">PROFIL</a></li>
+            <li><a href="login.html">LOGIN</a></li>
+            <li><a href="sign up.html">SIGN UP</a></li>
+            <li><a href="acceuil.html">ACCUEIL</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="ECLAIRAGE.html">ECLAIRAGE</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="slider-container">
+        <!-- Slide principal en 2 colonnes -->
+        <h2>Excellence en Éclairage LED</h2>
+        <div class="main-slide">
+            <div class="slide active">
+                <div class="left"><img src="Vidéos/NEPTUNE.jpg" alt="img1"></div>
+                <div class="right">
+                    <h2>NEPTUNE</h2>
+                    <p><strong>Type :</strong> Projecteur LED extérieur &nbsp; | &nbsp; <strong>Applications :</strong>
+                        Façades, parkings, zones industrielles</p>
+                    <p><strong>Source :</strong> LED SMD &nbsp; | &nbsp; <strong>Puissance :</strong> 30W à 150W &nbsp;
+                        | &nbsp; <strong>Flux :</strong> jusqu’à 18 000 lm</p>
+                    <p><strong>Température :</strong> 3000K / 4000K / 5700K &nbsp; | &nbsp; <strong>IRC :</strong> > 80
+                        &nbsp; | &nbsp; <strong>Efficacité :</strong> ~130 lm/W</p>
+                    <p><strong>Optique :</strong> Verre trempé &nbsp; | &nbsp; <strong>Angles :</strong> 90°, 120°</p>
+                    <p><strong>Matériaux :</strong> Aluminium + verre &nbsp; | &nbsp; <strong>Dimensions :</strong>
+                        250×210×55 mm &nbsp; | &nbsp; <strong>Poids :</strong> ~2,2 kg</p>
+                    <p><strong>Installation :</strong> Mural, mât &nbsp; | &nbsp; <strong>IP :</strong> IP66 &nbsp; |
+                        &nbsp; <strong>IK :</strong> IK08</p>
+                    <p><strong>Variation :</strong> 1-10V &nbsp; | &nbsp; <strong>Détection :</strong> Crépusculaire
+                        (option) &nbsp; | &nbsp; <strong>Garantie :</strong> 5 ans</p>
+
+
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="left"><img src="Vidéos/CARINA.jpg" alt="img2"></div>
+                <div class="right">
+                    <h2>CARINA</h2>
+                    <p><strong>Type :</strong> Applique LED murale &nbsp; | &nbsp; <strong>Applications :</strong>
+                        Voirie, parcs, allées</p>
+                    <p><strong>Source :</strong> LED COB &nbsp; | &nbsp; <strong>Puissance :</strong> 20W / 40W &nbsp; |
+                        &nbsp; <strong>Flux :</strong> jusqu’à 6 000 lm</p>
+                    <p><strong>Température :</strong> 3000K / 4000K &nbsp; | &nbsp; <strong>IRC :</strong> > 80 &nbsp; |
+                        &nbsp; <strong>Efficacité :</strong> ~120 lm/W</p>
+                    <p><strong>Optique :</strong> Verre dépoli &nbsp; | &nbsp; <strong>Angle :</strong> Large diffusion
+                    </p>
+                    <p><strong>Matériaux :</strong> Aluminium + verre &nbsp; | &nbsp; <strong>Dimensions :</strong>
+                        320×180×100 mm</p>
+                    <p><strong>Installation :</strong> Applique &nbsp; | &nbsp; <strong>IP :</strong> IP65 &nbsp; |
+                        &nbsp; <strong>IK :</strong> IK08</p>
+                    <p><strong>Détection :</strong> PIR (option) &nbsp; | &nbsp; <strong>Classe :</strong> II &nbsp; |
+                        &nbsp; <strong>Garantie :</strong> 3 ans</p>
+
+
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="left"><img src="Vidéos/FORNAX.jpg" alt="img3"></div>
+                <div class="right">
+                    <h2>FORNAX</h2>
+
+                    <!-- هنا نخلي النص في div قابلة للتمرير -->
+                    <div style="max-height: 250px; overflow-y: auto; padding-right: 10px;">
+                        <p><strong>Type :</strong> Luminaire LED modulaire &nbsp; | &nbsp; <strong>Applications
+                                :</strong> Stades, logistique, grandes hauteurs</p>
+                        <p><strong>Source :</strong> LED haute intensité &nbsp; | &nbsp; <strong>Puissance :</strong>
+                            200W à 600W &nbsp; | &nbsp; <strong>Flux :</strong> jusqu’à 90 000 lm</p>
+                        <p><strong>Température :</strong> 4000K / 5000K / 6500K &nbsp; | &nbsp; <strong>IRC :</strong> >
+                            70 &nbsp; | &nbsp; <strong>Efficacité :</strong> ~150 lm/W</p>
+                        <p><strong>Optique :</strong> Lentille PMMA &nbsp; | &nbsp; <strong>Angles :</strong> 30°, 60°,
+                            90°, 120°</p>
+                        <p><strong>Installation :</strong> Mât, structure &nbsp; | &nbsp; <strong>IP :</strong> IP66
+                            &nbsp; | &nbsp; <strong>IK :</strong> IK10</p>
+                        <p><strong>Variation :</strong> DALI / 1-10V / DMX &nbsp; | &nbsp; <strong>Classe :</strong> I
+                        </p>
+                        <p><strong>Durée de vie :</strong> > 100 000 h &nbsp; | &nbsp; <strong>Garantie :</strong> 7 ans
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="slide">
+                <div class="left"><img src="Vidéos/ALBA.jpg" alt="img2"></div>
+                <div class="right">
+                    <h2>ALBA</h2>
+                    <p><strong>Type :</strong> Borne LED extérieure &nbsp; | &nbsp; <strong>Applications :</strong>
+                        Jardins, allées, espaces publics</p>
+                    <p><strong>Source :</strong> LED intégrée &nbsp; | &nbsp; <strong>Puissance :</strong> 10W / 20W
+                        &nbsp; | &nbsp; <strong>Flux :</strong> jusqu’à 2 000 lm</p>
+                    <p><strong>Température :</strong> 3000K / 4000K &nbsp; | &nbsp; <strong>IRC :</strong> > 80 &nbsp; |
+                        &nbsp; <strong>Efficacité :</strong> ~100 lm/W</p>
+                    <p><strong>Optique :</strong> Diffuseur opale &nbsp; | &nbsp; <strong>Angle :</strong> 360°</p>
+                    <p><strong>Matériaux :</strong> Aluminium + polycarbonate &nbsp; | &nbsp; <strong>Dimensions
+                            :</strong> H = 800 mm &nbsp; | &nbsp; <strong>Poids :</strong> ~3 kg</p>
+                    <p><strong>Installation :</strong> Ancrage au sol &nbsp; | &nbsp; <strong>IP :</strong> IP65 &nbsp;
+                        | &nbsp; <strong>IK :</strong> IK08</p>
+                    <p><strong>Classe :</strong> II &nbsp; | &nbsp; <strong>Variation :</strong> Non &nbsp; | &nbsp;
+                        <strong>Garantie :</strong> 3 ans
+                    </p>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Miniatures cliquables -->
+        <div class="thumbnails">
+            <img src="Vidéos/NEPTUNE.jpg" data-index="0" class="selected">
+            <img src="Vidéos/CARINA.jpg" data-index="1">
+            <img src="Vidéos/FORNAX.jpg" data-index="2">
+            <img src="Vidéos/ALBA.jpg" data-index="3">
+
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const thumbs = document.querySelectorAll('.thumbnails img');
+        let currentIndex = 0;
+        let interval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            thumbs.forEach((thumb, i) => {
+                thumb.classList.toggle('selected', i === index);
+            });
+            currentIndex = index;
+        }
+
+        function startAutoSlide() {
+            interval = setInterval(() => {
+                const next = (currentIndex + 1) % slides.length;
+                showSlide(next);
+            }, 4000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(interval);
+            startAutoSlide();
+        }
+
+        startAutoSlide();
+
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                const index = parseInt(thumb.getAttribute('data-index'));
+                showSlide(index);
+                resetAutoSlide();
+            });
+        });
+    </script>
+    <section class="gallery-section">
+        <h2>Nos Réalisations</h2>
+        <div class="gallery-grid">
+            <!-- 1re ligne -->
+            <a href="photo.html?id=neptune" class="photo-card">
+                <img src="Vidéos/NIU.jpg" alt="NIU">
+                <p>NIU</p>
+            </a>
+            <a href="photo.html?id=carina" class="photo-card">
+                <img src="Vidéos/CARINA.jpg" alt="CARINA">
+                <p>CARINA</p>
+            </a>
+            <a href="photo.html?id=alba" class="photo-card">
+                <img src="Vidéos/ALBA.jpg" alt="ALBA">
+                <p>ALBA</p>
+            </a>
+            <a href="photo.html?id=fornax" class="photo-card">
+                <img src="Vidéos/FORNAX.jpg" alt="FORNAX">
+                <p>FORNAX</p>
+            </a>
+
+            </a>
+            <a href="photo.html?id=neptune" class="photo-card">
+                <img src="Vidéos/NEPTUNE.jpg" alt="NEPTUNE">
+                <p>NEPTUNE</p>
+            </a>
+            <a href="photo.html?id=alya" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/ALYA.jpg" alt="ALYA">
+                <p>ALYA</p>
+            </a>
+            <a href="photo.html?id=aries" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/ARIES.jpg" alt="ARIES">
+                <p>ARIES</p>
+            </a>
+            <a href="photo.html?id=castor" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/CASTOR.jpg" alt="CASTOR">
+                <p>CASTOR</p>
+            </a>
+            <a href="photo.html?id=celia" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/CELIA.jpg" alt="CELIA">
+                <p>CELIA</p>
+            </a>
+            <a href="photo.html?id=fortaleza" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/FORTALEZA.jpg" alt="FORTALEZA">
+                <p>FORTALEZA</p>
+            </a>
+            <a href="photo.html?id=imperial" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/IMPERIAL.jpg" alt="IMPERIAL">
+                <p>IMPERIAL</p>
+            </a>
+            <a href="photo.html?id=luna" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/LUNA.jpg" alt="LUNA">
+                <p>LUNA</p>
+            </a>
+            <a href="photo.html?id=navi" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/NAVI.jpg" alt="NAVI">
+                <p>NAVI</p>
+            </a>
+            <a href="photo.html?id=palace" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/PALACE.jpg" alt="PALACE">
+                <p>PALACE</p>
+            </a>
+            <a href="photo.html?id=paris" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/PARIS.jpg" alt="PARIS">
+                <p>PARIS</p>
+            </a>
+            <a href="photo.html?id=royal" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/ROYAL.jpg" alt="ROYAL">
+                <p>ROYAL</p>
+            </a>
+            <a href="photo.html?id=selene" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/SELENE.jpg" alt="SELENE">
+                <p>SELENE</p>
+            </a>
+            <a href="photo.html?id=vela" class="photo-card">
+                <img src="PHOTO ECLAIRAGE/VELA.jpg" alt="VELA">
+                <p>VELA</p>
+            </a>
+
+            <!-- Tu peux continuer avec d'autres lignes de 6 photos -->
+        </div>
+    </section>
+
+
+
+
+    <!-- SECTION 1: Vidéo d’introduction -->
+
+    <section class="video-section">
+
+        <video autoplay muted loop class="bg-video">
+            <source src="Vidéos/un design d'excellence fll hd.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <!-- ====== FOOTER ====== -->
+        <footer>
+            <div>
+                <div>
+                    <img src="PHOTO LAMALIF/LOGO.png" alt="Logo Lamalif">
+                    <p>Depuis plus de 20 ans, Lamalif Group contribue à l’esthétique des villes et des territoires
+                        au
+                        Maroc.
+                    </p>
+                    <p>📍 Km 17, Route de Casablanca</p>
+                    <p>📞 <a href="tel:+212524344669">+212 5 24 34 46 69</a></p>
+                    <p>📞 <a href="tel:+212712428844">+212 7 12 42 88 44</a></p>
+                    <p>✉️ <a href="mailto:chaymaechababi3@gmail.com">chaymaechababi3@gmail.com</a></p>
+                    <p>✉️ <a href="mailto:contact@lamalif.ma">contact@lamalif.ma</a></p>
+                </div>
+
+                <div>
+                    <h3>Le Groupe</h3>
+                    <hr>
+                    <ul>
+                        <li><a href="mot-president.html">Mot du président</a></li>
+                        <li><a href="groupe-bref.html">Lamalif Group en bref</a></li>
+                        <li><a href="chiffres-cles.html">Nos chiffres clés</a></li>
+                        <li><a href="vision-mission.html">Vision & mission</a></li>
+                        <li><a href="valeurs.html">Nos valeurs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Nos filiales</h3>
+                    <hr>
+                    <ul>
+                        <li><a href="lamalif.html">Lamalif</a></li>
+                        <li><a href="immobilier.html">Lamalif Immobilier</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Abonnez-vous à notre Newsletter</h3>
+                    <hr>
+                    <form action="newsletter.php" method="post">
+                        <label for="email">Email<span style="color:red;">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <button type="submit">Souscrire</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard Pro - Graphiques & Utilisateurs & SQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        /* RESET */
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .dashboard {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: #2d2f4a;
+            padding: 30px 20px;
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 {
+            margin: 0 0 30px 0;
+            font-weight: 700;
+            font-size: 1.8rem;
+            text-align: center;
+            letter-spacing: 2px;
+            color: #a0a0d3;
+            user-select: none;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #bbb;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            text-align: left;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            user-select: none;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: #4c4f7a;
+            color: #e0e0ff;
+            font-weight: 600;
+        }
+
+        /* CONTENU PRINCIPAL */
+        .main-content {
+            flex-grow: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            position: relative;
+            background: rgba(255 255 255 / 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* SECTION GRAPHIQUES + SQL */
+        #dashboardView {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 40px;
+        }
+
+        .charts {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .chart-container {
+            flex: 1 1 45%;
+            background: rgba(255 255 255 / 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(255 255 255 / 0.1);
+            color: white;
+            min-width: 320px;
+        }
+
+        .chart-container h2 {
+            margin-top: 0;
+            font-weight: 700;
+            margin-bottom: 20px;
+            user-select: none;
+        }
+
+        /* SECTION UTILISATEURS */
+        #usersView {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            background: rgba(255 255 255 / 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(255 255 255 / 0.1);
+            color: white;
+            overflow-y: auto;
+        }
+
+        #usersView.active {
+            display: flex;
+        }
+
+        #usersView h2 {
+            margin-top: 0;
+            font-weight: 700;
+            margin-bottom: 20px;
+            user-select: none;
+        }
+
+        /* TABLE UTILISATEURS */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #ddd;
+        }
+
+        thead {
+            background: #2e2f48;
+            user-select: none;
+        }
+
+        th,
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #44466e;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        tbody tr:hover {
+            background: #44466e88;
+            cursor: pointer;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: white;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .btn-edit {
+            background-color: #f59e0b;
+        }
+
+        .btn-edit:hover {
+            background-color: #d97706;
+        }
+
+        .btn-delete {
+            background-color: #ef4444;
+        }
+
+        .btn-delete:hover {
+            background-color: #b91c1c;
+        }
+
+        /* SECTION SQL */
+        #sqlSection {
+            background: rgba(255 255 255 / 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(255 255 255 / 0.1);
+            color: white;
+            max-height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sqlSection h2 {
+            margin-top: 0;
+            font-weight: 700;
+            margin-bottom: 15px;
+            user-select: none;
+        }
+
+        #sqlQuery {
+            flex-grow: 1;
+            width: 100%;
+            resize: none;
+            border-radius: 8px;
+            border: none;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 1rem;
+            background: rgba(0 0 0 / 0.3);
+            color: white;
+            outline: none;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 15px;
+        }
+
+        #executeSQLBtn {
+            align-self: flex-start;
+            background-color: #4f46e5;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        #executeSQLBtn:hover {
+            background-color: #4338ca;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .charts {
+                flex-direction: column;
+            }
+
+            .chart-container {
+                flex: 1 1 100%;
+                min-width: auto;
+            }
+
+            .sidebar {
+                width: 60px;
+                padding: 30px 10px;
+            }
+
+            .sidebar h2 {
+                display: none;
+            }
+
+            .nav-btn {
+                padding: 12px 10px;
+                font-size: 1.4rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>Lamalif</h2>
+
+            <button class="nav-btn active" id="btnDashboard">Dashboard</button>
+            <button class="nav-btn" id="btnUsers">Utilisateurs</button>
+            <button class="nav-btn" id="btnSettings">Paramètres</button>
+
+        </nav>
+
+        <!-- Main content -->
+        <main class="main-content">
+
+            <!-- Vue Dashboard (graph + sql) -->
+            <section id="dashboardView">
+                <div class="charts">
+                    <div class="chart-container">
+                        <h2>Nombre d'utilisateurs par mois</h2>
+                        <canvas id="usersByMonthChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h2>Répartition par jour d'inscription</h2>
+                        <canvas id="usersByDayChart"></canvas>
+                    </div>
+                </div>
+
+                <section id="sqlSection">
+                    <h2>Écrire une requête SQL</h2>
+                    <textarea id="sqlQuery"
+                        placeholder="Exemple : SELECT * FROM utilisateurs WHERE date_inscription > '2025-01-01';"></textarea>
+                    <button id="executeSQLBtn">Exécuter</button>
+                </section>
+            </section>
+
+            <!-- Vue Utilisateurs -->
+            <section id="usersView">
+                <h2>Liste des Utilisateurs</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Date d'inscription</th>
+                            <th style="text-align: right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- lignes ajoutées par JS -->
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Données utilisateurs exemple
+        let users = [
+            { id: 1, name: "Alice Dupont", email: "alice@example.com", signupDate: "2025-06-01" },
+            { id: 2, name: "Bob Martin", email: "bob@example.com", signupDate: "2025-06-12" },
+            { id: 3, name: "Caroline Moreau", email: "caroline@example.com", signupDate: "2025-07-03" },
+            { id: 4, name: "David Bernard", email: "david@example.com", signupDate: "2025-07-10" },
+            { id: 5, name: "Emma Laurent", email: "emma@example.com", signupDate: "2025-07-15" }
+        ];
+
+        // Elements
+        const btnDashboard = document.getElementById('btnDashboard');
+        const btnUsers = document.getElementById('btnUsers');
+        const btnSettings = document.getElementById('btnSettings');
+        const dashboardView = document.getElementById('dashboardView');
+        const usersView = document.getElementById('usersView');
+        const usersTableBody = document.getElementById('usersTableBody');
+        const executeSQLBtn = document.getElementById('executeSQLBtn');
+        const sqlQueryTextarea = document.getElementById('sqlQuery');
+
+        // Fonction afficher utilisateurs dans tableau
+        function renderUsers() {
+            usersTableBody.innerHTML = '';
+            users.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+        <td>${u.name}</td>
+        <td>${u.email}</td>
+        <td>${u.signupDate}</td>
+        <td class="actions" style="text-align: right;">
+          <button class="btn-action btn-edit" onclick="editUser(${u.id})">Modifier</button>
+          <button class="btn-action btn-delete" onclick="deleteUser(${u.id})">Supprimer</button>
+        </td>
+      `;
+                usersTableBody.appendChild(tr);
+            });
+        }
+
+        // Modifier utilisateur
+        function editUser(id) {
+            const user = users.find(u => u.id === id);
+            if (!user) return alert("Utilisateur non trouvé");
+
+            const name = prompt("Modifier le nom:", user.name);
+            if (!name) return alert("Nom obligatoire !");
+            const email = prompt("Modifier l'email:", user.email);
+            if (!email) return alert("Email obligatoire !");
+            const signupDate = prompt("Modifier la date d'inscription (YYYY-MM-DD):", user.signupDate);
+            if (!signupDate) return alert("Date obligatoire !");
+
+            user.name = name;
+            user.email = email;
+            user.signupDate = signupDate;
+
+            renderUsers();
+            updateCharts();
+        }
+
+        // Supprimer utilisateur
+        function deleteUser(id) {
+            if (confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
+                users = users.filter(u => u.id !== id);
+                renderUsers();
+                updateCharts();
+            }
+        }
+
+        // Données graphiques
+        function getUsersCountByMonth() {
+            const counts = {};
+            users.forEach(u => {
+                const month = u.signupDate.slice(0, 7);
+                counts[month] = (counts[month] || 0) + 1;
+            });
+            const labels = Object.keys(counts).sort();
+            const data = labels.map(l => counts[l]);
+            return { labels, data };
+        }
+        function getUsersCountByDay() {
+            const counts = {};
+            users.forEach(u => {
+                const day = u.signupDate.slice(8, 10);
+                counts[day] = (counts[day] || 0) + 1;
+            });
+            const labels = Object.keys(counts).sort((a, b) => a - b);
+            const data = labels.map(l => counts[l]);
+            return { labels, data };
+        }
+
+        // Init graphes
+        let usersByMonthChart, usersByDayChart;
+        function initCharts() {
+            const ctxMonth = document.getElementById('usersByMonthChart').getContext('2d');
+            const ctxDay = document.getElementById('usersByDayChart').getContext('2d');
+
+            const byMonth = getUsersCountByMonth();
+            const byDay = getUsersCountByDay();
+
+            usersByMonthChart = new Chart(ctxMonth, {
+                type: 'bar',
+                data: {
+                    labels: byMonth.labels,
+                    datasets: [{
+                        label: 'Utilisateurs',
+                        data: byMonth.data,
+                        backgroundColor: '#a78bfa'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true, precision: 0, ticks: { color: '#fff' } },
+                        x: { ticks: { color: '#fff' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#fff' } }
+                    }
+                }
+            });
+
+            usersByDayChart = new Chart(ctxDay, {
+                type: 'line',
+                data: {
+                    labels: byDay.labels,
+                    datasets: [{
+                        label: 'Utilisateurs',
+                        data: byDay.data,
+                        fill: false,
+                        borderColor: '#a78bfa',
+                        backgroundColor: '#a78bfa',
+                        tension: 0.3,
+                        pointBackgroundColor: '#a78bfa',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true, precision: 0, ticks: { color: '#fff' } },
+                        x: { ticks: { color: '#fff' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#fff' } }
+                    }
+                }
+            });
+        }
+
+        // Update charts après modif utilisateurs
+        function updateCharts() {
+            const byMonth = getUsersCountByMonth();
+            usersByMonthChart.data.labels = byMonth.labels;
+            usersByMonthChart.data.datasets[0].data = byMonth.data;
+            usersByMonthChart.update();
+
+            const byDay = getUsersCountByDay();
+            usersByDayChart.data.labels = byDay.labels;
+            usersByDayChart.data.datasets[0].data = byDay.data;
+            usersByDayChart.update();
+        }
+
+        // Gestion navigation
+        function clearActive() {
+            btnDashboard.classList.remove('active');
+            btnUsers.classList.remove('active');
+            btnSettings.classList.remove('active');
+        }
+
+        btnDashboard.addEventListener('click', () => {
+            clearActive();
+            btnDashboard.classList.add('active');
+            dashboardView.style.display = "flex";
+            usersView.style.display = "none";
+        });
+
+        btnUsers.addEventListener('click', () => {
+            clearActive();
+            btnUsers.classList.add('active');
+            dashboardView.style.display = "none";
+            usersView.style.display = "flex";
+        });
+
+        btnSettings.addEventListener('click', () => {
+            clearActive();
+            btnSettings.classList.add('active');
+            dashboardView.style.display = "flex"; // tu peux remplacer par un autre contenu
+            usersView.style.display = "none";
+            alert("Paramètres à venir...");
+        });
+
+        // Bouton exécuter SQL
+        executeSQLBtn.addEventListener('click', () => {
+            const query = sqlQueryTextarea.value.trim();
+            if (!query) {
+                alert("Écris une requête SQL avant d'exécuter !");
+                return;
+            }
+            // Ici, juste affichage en console, car exécution SQL côté serveur
+            console.log("Requête SQL à exécuter :\n", query);
+            alert("Requête SQL envoyée à exécution (simulation). Regarde la console.");
+        });
+
+        // Initialisation
+        renderUsers();
+        initCharts();
+
+    </script>
+
+</body>
+
+</html>
